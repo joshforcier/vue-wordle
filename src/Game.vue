@@ -5,10 +5,30 @@ import Keyboard from './Keyboard.vue'
 import { LetterState } from './types'
 
 // Get word of the day
-const answer = getWordOfTheDay()
+let answer = getWordOfTheDay()
+
+function getNewWord() {
+  answer = getWordOfTheDay()
+  resetBoard()
+}
+
+function resetBoard() {
+  currentRowIndex = 0
+  letterStates = {}
+  message = ''
+  success = false
+  grid = ''
+  allowInput = true
+  board =  Array.from({ length: 6 }, () =>
+    Array.from({ length: 5 }, () => ({
+      letter: '',
+      state: LetterState.INITIAL
+    }))
+  )
+}
 
 // Board state. Each tile is represented as { letter, state }
-const board = $ref(
+let board = $ref(
   Array.from({ length: 6 }, () =>
     Array.from({ length: 5 }, () => ({
       letter: '',
@@ -28,7 +48,7 @@ let shakeRowIndex = $ref(-1)
 let success = $ref(false)
 
 // Keep track of revealed letters for the virtual keyboard
-const letterStates: Record<string, LetterState> = $ref({})
+let letterStates: Record<string, LetterState> = $ref({})
 
 // Handle keyboard input.
 let allowInput = true
@@ -180,12 +200,12 @@ function genResultGrid() {
   </Transition>
   <header>
     <h1>VVORDLE</h1>
-    <a
-      id="source-link"
-      href="https://github.com/yyx990803/vue-wordle"
-      target="_blank"
-      >Source</a
+    <button
+      class="button-37"
+      @click="getNewWord()"
     >
+      New Word
+    </button>
   </header>
   <div id="board">
     <div
@@ -369,6 +389,38 @@ function genResultGrid() {
 @media (max-height: 680px) {
   .tile {
     font-size: 3vh;
+  }
+}
+.button-37 {
+  background-color: #13aa52;
+  border: 1px solid #13aa52;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  outline: 0;
+  padding: 10px 25px;
+  text-align: center;
+  transform: translateY(0);
+  transition: transform 150ms, box-shadow 150ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-37:hover {
+  box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+  transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+  .button-37 {
+    padding: 10px 30px;
   }
 }
 </style>
