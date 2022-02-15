@@ -6,7 +6,7 @@ import { LetterState } from './types'
 
 // Get word of the day
 let answer = getWordOfTheDay()
-
+console.log(answer)
 function getNewWord() {
   answer = getWordOfTheDay()
   resetBoard()
@@ -244,7 +244,7 @@ function genResultGrid() {
 <style scoped>
 #board {
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   grid-gap: 5px;
   padding: 10px;
   box-sizing: border-box;
@@ -256,9 +256,9 @@ function genResultGrid() {
 .message {
   position: absolute;
   left: 50%;
-  top: 80px;
+  top: 150px;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: grey;
   padding: 16px 20px;
   z-index: 2;
   border-radius: 4px;

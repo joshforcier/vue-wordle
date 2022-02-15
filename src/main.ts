@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import Game from './Game.vue'
+import VueGtag from 'vue-gtag'
 import './game.css'
 
 // resize for scaling the board size
@@ -12,4 +13,6 @@ function onResize() {
   document.body.style.setProperty('--vh', window.innerHeight + 'px')
 }
 
-createApp(Game).mount('#app')
+createApp(Game).use(VueGtag, {
+  config: { id: 'G-DNFYBPZ3P3' }
+}).mount('#app')
