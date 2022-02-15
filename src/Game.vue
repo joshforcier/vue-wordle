@@ -303,7 +303,7 @@ function genResultGrid() {
   -webkit-backface-visibility: hidden;
 }
 .tile .front {
-  border: 2px solid #d3d6da;
+  border: 2px solid #999;
 }
 .tile.filled .front {
   border-color: #999;
