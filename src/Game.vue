@@ -6,7 +6,7 @@ import { LetterState } from './types'
 
 // Get word of the day
 let answer = getWordOfTheDay()
-console.log(answer)
+
 function getNewWord() {
   answer = getWordOfTheDay()
   resetBoard()
