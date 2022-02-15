@@ -392,8 +392,10 @@ function genResultGrid() {
 @media (max-height: 680px) {
   .tile {
     font-size: 3vh;
-    color: #fff;
   }
+}
+.tile {
+  color: #fff;
 }
 .button-37 {
   background-color: #13aa52;
