@@ -14,5 +14,5 @@ function onResize() {
 }
 
 createApp(Game).use(VueGtag, {
-  config: { id: 303661180 }
+  config: { id: 'G-DNFYBPZ3P3' }
 }).mount('#app')
