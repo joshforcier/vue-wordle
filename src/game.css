@@ -38,3 +38,10 @@ header {
 .absent {
   background-color: #787c7e !important;
 }
+
+body {
+  background-color: #000;
+}
+h1 {
+  color: #fff;
+}

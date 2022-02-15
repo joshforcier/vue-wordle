@@ -20,7 +20,7 @@ function resetBoard() {
   grid = ''
   allowInput = true
   board =  Array.from({ length: 6 }, () =>
-    Array.from({ length: 5 }, () => ({
+    Array.from({ length: 6 }, () => ({
       letter: '',
       state: LetterState.INITIAL
     }))
@@ -30,7 +30,7 @@ function resetBoard() {
 // Board state. Each tile is represented as { letter, state }
 let board = $ref(
   Array.from({ length: 6 }, () =>
-    Array.from({ length: 5 }, () => ({
+    Array.from({ length: 6 }, () => ({
       letter: '',
       state: LetterState.INITIAL
     }))
@@ -93,7 +93,10 @@ function clearTile() {
 function completeRow() {
   if (currentRow.every((tile) => tile.letter)) {
     const guess = currentRow.map((tile) => tile.letter).join('')
-    if (!allWords.includes(guess) && guess !== answer) {
+    const found = allWords.find(word => {
+      return word.toLowerCase() === guess.toLowerCase();
+    });
+    if (!found && guess !== answer) {
       shake()
       showMessage(`Not in word list`)
       return
@@ -199,7 +202,7 @@ function genResultGrid() {
     </div>
   </Transition>
   <header>
-    <h1>VVORDLE</h1>
+    <h1>(not)WORDLE</h1>
     <button
       class="button-37"
       @click="getNewWord()"
@@ -247,7 +250,7 @@ function genResultGrid() {
   box-sizing: border-box;
   --height: min(420px, calc(var(--vh, 100vh) - 310px));
   height: var(--height);
-  width: min(350px, calc(var(--height) / 6 * 5));
+  width: min(350px, calc(var(--height) / 6 * 6));
   margin: 0px auto;
 }
 .message {
@@ -268,7 +271,7 @@ function genResultGrid() {
 }
 .row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 5px;
 }
 .tile {
